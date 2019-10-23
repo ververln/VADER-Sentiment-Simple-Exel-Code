@@ -6,17 +6,19 @@
 import vaderSentiment.vaderSentiment 
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import csv
-import pandas
-     
-analyser = SentimentIntensityAnalyzer()
-    
-def sentiment_analyzer_scores(text):
-    score = analyser.polarity_scores(text)
-    print("{:-<40} {}".format(text, str(score)))
+import pandas as pd
 
-with open(r'your_path\data.csv', 'r+') as data:
-    for row in data:
-        ap = sentiment_analyzer_scores(str(row))
-        print (ap)
-        writer = csv.writer(data)
-        writer.writerow(ap)
+with open("C:\\Users\\Veronika\\Downloads\\thesis\\add.csv", 'r', encoding="windows-1252") as infile:
+    data = infile.read()
+    data = data.split("\n")
+    
+output = []
+
+for row in data:
+    score = SentimentIntensityAnalyzer().polarity_scores(row)
+    score["text"] = row
+    output.append(score)
+    
+df = pd.DataFrame(output)
+df.to_csv("texts_and_scores_add.csv")
+print ()
