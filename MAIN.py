@@ -8,7 +8,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import csv
 import pandas as pd
 
-with open("C:\\Users\\Veronika\\Downloads\\thesis\\add.csv", 'r', encoding="windows-1252") as infile:
+with open("your_path\data.csv", 'r', encoding="windows-1252") as infile:
     data = infile.read()
     data = data.split("\n")
     
